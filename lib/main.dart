@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+import 'package:multiple_records/RecordView.dart';
 
 void main() {
   runApp(const MyApp());
@@ -130,7 +131,12 @@ class _HomeState extends State<Home> {
                 ),
               ),
               SizedBox(height: 20,),
-              ElevatedButton(onPressed: insertdata, child: Text('Add')),
+              ElevatedButton(onPressed: insertdata, child:Text('Add')),
+              ElevatedButton(onPressed: (){
+                Navigator.push(context,MaterialPageRoute(builder: (context) => RecordView()));
+              }, child: Text('View')),
+
+
             ],
           ),
         ),
