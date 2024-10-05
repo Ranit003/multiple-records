@@ -19,6 +19,19 @@ class _RecordViewState extends State<RecordView> {
       userdata=jsonDecode(res.body);
     });
   }
+  Future<void> deleteuser(String value) async{
+    String url="http://10.0.2.2/MULTI_API/delete.php";
+    var request = await http.post(Uri.parse(url),body:{"userid":value});
+    print("$value");
+    var response= jsonDecode(request.body);
+    if(response["success"]=="true"){
+      viewdata();
+    }
+    else{
+      print("Some Issue");
+    }
+  }
+
 
   @override
   void initState() {
@@ -66,6 +79,14 @@ class _RecordViewState extends State<RecordView> {
                   Text(userdata[index]["address2"]),
                 ],
               ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  IconButton(onPressed: (){
+                    deleteuser(userdata[index]["user_id"]);
+                  }, icon: Icon(Icons.delete)),
+                ],
+              )
             ],
           ),
         );
