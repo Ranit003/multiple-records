@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:http/http.dart'as http;
+import 'package:multiple_records/updaterecord.dart';
 
 class RecordView extends StatefulWidget {
 
@@ -48,7 +49,19 @@ class _RecordViewState extends State<RecordView> {
       ),
       body: ListView.builder(itemCount: userdata.length,
           itemBuilder: (context,index){
-        return Card(
+        return GestureDetector(
+          onTap: (){
+            Navigator.push(context,MaterialPageRoute(builder: (context)=>Update(
+              userdata[index]["Name"],
+              userdata[index]["email"],
+              userdata[index]["phone1"],
+              userdata[index]["phone2"],
+              userdata[index]["address1"],
+              userdata[index]["address2"],
+              userdata[index]["user_id"],
+            )));
+          },
+          child: Card(
           margin: EdgeInsets.all(10),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
@@ -89,7 +102,7 @@ class _RecordViewState extends State<RecordView> {
               )
             ],
           ),
-        );
+        ));
           }
       ),
     );
